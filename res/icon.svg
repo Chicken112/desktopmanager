@@ -11,9 +11,9 @@
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
    id="svg8"
    version="1.1"
-   viewBox="0 0 210 297"
-   height="297mm"
-   width="210mm">
+   viewBox="0 0 178 177"
+   height="177mm"
+   width="178mm">
   <defs
      id="defs2">
     <rect
@@ -35,14 +35,14 @@
      inkscape:window-x="-8"
      inkscape:window-height="1017"
      inkscape:window-width="1920"
-     showborder="false"
+     showborder="true"
      showgrid="false"
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="-20"
-     inkscape:cx="-248.57143"
-     inkscape:zoom="0.35"
+     inkscape:cy="457.29664"
+     inkscape:cx="123.18336"
+     inkscape:zoom="0.49497475"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -70,15 +70,15 @@
        id="rect847"
        width="170.84525"
        height="170.84525"
-       x="-150.43445"
-       y="-63.499992"
+       x="0.84010434"
+       y="5.4555459"
        rx="21.166666"
        ry="21.166666" />
     <rect
        ry="21.166666"
        rx="21.166666"
-       y="-68.791664"
-       x="-145.14285"
+       y="0.16387397"
+       x="6.1316996"
        height="170.84525"
        width="170.84525"
        id="rect833"
@@ -87,12 +87,12 @@
        xml:space="preserve"
        id="text843"
        style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.15;font-family:sans-serif;white-space:pre;shape-inside:url(#rect845);fill:#1c54b2;fill-opacity:1;stroke:none;stroke-width:0.312054;"
-       transform="matrix(3.2045738,0,0,3.2045738,252.17927,86.556311)"><tspan
+       transform="matrix(3.2045738,0,0,3.2045738,403.45382,155.51185)"><tspan
          x="-119.44141"
          y="-2.9513294"><tspan
            style="font-size:50.8px;fill:#1c54b2;fill-opacity:1;stroke-width:0.312054">M</tspan></tspan></text>
     <text
-       transform="matrix(3.2045738,0,0,3.2045738,262.00665,86.556311)"
+       transform="matrix(3.2045738,0,0,3.2045738,413.2812,155.51185)"
        style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.15;font-family:sans-serif;white-space:pre;shape-inside:url(#rect837);fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.312054;"
        id="text835"
        xml:space="preserve"><tspan
