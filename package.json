@@ -29,7 +29,10 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "desktopmanager"
+            "name": "desktopmanager",
+            "authors": "Chickendev",
+            "iconUrl": "https://github.com/Chicken112/desktopmanager/blob/main/res/icon.ico?raw=true",
+            "msi": true
           }
         },
         {
