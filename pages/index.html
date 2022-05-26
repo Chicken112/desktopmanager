@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="stylesheet" href="style.css">
-    <!-- <script defer src="script.js"></script> -->
+    <script defer src="script.js"></script>
     <script defer src="window.js"></script>
     <link rel="icon" href="../res/icon.ico" type="image/x-icon">
   </head>
@@ -68,7 +68,11 @@
     </div>
 
     <div class="window" id="settings">
-      <h1>It works</h1>
+      <div class="handle"></div>
+      <h1>Settigs</h1>
+      <p>Here, you can customize the appearence of stuff</p>
+      <button onclick="sendMessageToWindow('show-resource-directory')"><span class="material-symbols-outlined">folder</span>Open Configuration folder</button>
+      <button onclick="sendMessageToWindow('exit')"><span class="material-symbols-outlined">cancel</span>Exit</button>
     </div>
   </body>
 </html>

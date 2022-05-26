@@ -4,6 +4,7 @@
     --color-button: #3b3b3b;
     --opacity: .5;
     
+    --borderradius: 1rem;
     --buttonSize: 4rem;
     --iconSize: 2.5rem;
 }
@@ -54,7 +55,7 @@ body{
 }
 .container li{
     background-color: var(--color-button);
-    border-radius: 1rem;
+    border-radius: var(--borderradius);
     width: var(--buttonSize);
     height: var(--buttonSize);
     position: relative;
@@ -105,7 +106,7 @@ body{
 }
 .bottom button{
     background-color: var(--color-button);
-    border-radius: 1rem;
+    border-radius: var(--borderradius);
     width: var(--buttonSize);
     height: var(--buttonSize);
 }
@@ -121,15 +122,30 @@ body{
     background-color: var(--color-button);
     display: none;
     position: absolute;
-    
+    resize: both;
+    overflow: auto;
+    padding: 1rem .5rem .5rem .5rem;
+    min-width: 200px;
+    min-height: 150px;
 }
 .window.open{
     display: block;
 }
-.window::before{
-    content: '';
+.window .handle{
     background-color: var(--color-accent);
     height: 1rem;
     inset: 0;
     position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.window button{
+    background-color: var(--color-accent);
+    padding: .5rem;
+    border-radius: calc(var(--borderradius)/2);
+}
+.window button [class^="material"]{
+    font-size: 1rem;
+    margin-right: .25rem;
 }

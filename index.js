@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
+const { app, BrowserWindow, globalShortcut, ipcMain, shell } = require('electron')
 const fs = require('fs')
 const path = require('path')
 const openApp = require('child_process').execFile
@@ -61,6 +61,14 @@ app.whenReady().then(() => {
 
     ipcMain.on('probe-colors', (e, args) => {
         win.webContents.send('change-colors', settings.visuals)
+    })
+
+    ipcMain.on("show-resource-directory", (e, args) => {
+        shell.showItemInFolder(settingslocation)
+        toggleWindow()
+    })
+    ipcMain.on("exit", (e, args) => {
+        app.exit(0)
     })
 
     function toggleWindow() {
