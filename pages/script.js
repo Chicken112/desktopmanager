@@ -1,4 +1,4 @@
-//let { ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron');
 
 const time = document.querySelector("#time")
 const date = document.querySelector("#date")

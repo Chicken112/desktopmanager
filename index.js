@@ -27,6 +27,8 @@ const createWindow = () => {
     return win
 }
 
+console.log(app.getPath("appData"))
+
 app.setLoginItemSettings({
     openAtLogin: true,
     openAsHidden: true,

@@ -22,7 +22,6 @@
     "electron": "^18.2.4",
     "electron-builder": "^23.0.3",
     "electron-icon-builder": "^2.0.1",
-    "electron-wix-msi": "^4.0.0",
     "exe-icon-extractor": "^1.0.8"
   },
   "build": {
@@ -35,9 +34,10 @@
     },
     "nsis": {
       "installerIcon": "res/icon.ico",
-      "uninstallerIcon": "res/icon.ico",
       "uninstallDisplayName": "DesktopManager",
+      "artifactName": "Desktopmanager${version}.${ext}",
       "oneClick": false,
+      "runAfterFinish": true,
       "allowToChangeInstallationDirectory": true
     }
   },
