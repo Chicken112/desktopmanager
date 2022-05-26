@@ -12,7 +12,16 @@ function openApp(path) {
   ipcRenderer.send('open-app', path)
 }
 
-const dropdown = document.querySelector('.right > .container')
+const rootElement = document.querySelector(':root')
+ipcRenderer.on('change-colors', (e, data) => {
+  rootElement.style.setProperty('--color-accent', data.accentcolor)
+  rootElement.style.setProperty('--color-text', data.textcolor)
+  rootElement.style.setProperty('--color-button', data.buttoncolor)
+  rootElement.style.setProperty('--opacity', data.opacity)
+})
+ipcRenderer.send('probe-colors')
+
+//const dropdown = document.querySelector('.right > .container')
 const dropdownElements = document.querySelectorAll('.right .container')
 function openDropdownTab(params) {
     dropdownElements.forEach(child => {
@@ -29,17 +38,3 @@ function openDropdownTab(params) {
         }
     }
 }
-
-// navbar.innerHTML = getHtml(elements, "")
-// function getHtml(arr, current) {
-//     arr.forEach(el => {
-//         if(typeof el == typeof []){
-//             current += `<li>${el[0]}</li><ul class="container">`
-//             current += getHtml(el.slice(1, -1), current)
-//             current += '</ul>'
-//         }else{
-//             current += `<li>${el}</li>`
-//         }
-//     });
-//     return current
-// }

@@ -1,5 +1,8 @@
 :root{
     --color-accent: #2979ff;
+    --color-text: #ffffff;
+    --color-button: #3b3b3b;
+    --opacity: .5;
     
     --buttonSize: 4rem;
     --iconSize: 2.5rem;
@@ -19,7 +22,7 @@
     text-decoration: none;
 }
 body{
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, var(--opacity));
 }
 .top{
     margin-top: 1rem;
@@ -37,7 +40,6 @@ body{
     top: 50%;
 }
 .container{
-    /* display: flex; */
     flex-direction: column;
     gap: .5rem;
     
@@ -47,11 +49,11 @@ body{
 
     display: none;
 }
-/*.container.active > li > .container,*/ .container.active{
+.container.active{
     display: flex;
 }
 .container li{
-    background-color: rgb(59, 59, 59);
+    background-color: var(--color-button);
     border-radius: 1rem;
     width: var(--buttonSize);
     height: var(--buttonSize);
@@ -79,12 +81,6 @@ body{
 [class^="material-symbols"] {
     font-size: var(--iconSize);
 }
-/* .container li i{
-    position: absolute;
-    font-size: 2rem;
-    inset: 0;
-    transform: translateY(20%);
-} */
 
 /* Tooltip */
 .tooltip::before{
@@ -98,4 +94,42 @@ body{
 }
 .tooltip:hover:before {
     display:block;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+.bottom button{
+    background-color: var(--color-button);
+    border-radius: 1rem;
+    width: var(--buttonSize);
+    height: var(--buttonSize);
+}
+.bottom button:hover{
+    background-color: var(--color-accent);
+}
+.bottom button [class^="material"] {
+    padding: calc((var(--buttonSize) - var(--iconSize))/2);
+}
+
+
+.window{
+    background-color: var(--color-button);
+    display: none;
+    position: absolute;
+    
+}
+.window.open{
+    display: block;
+}
+.window::before{
+    content: '';
+    background-color: var(--color-accent);
+    height: 1rem;
+    inset: 0;
+    position: absolute;
 }

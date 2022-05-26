@@ -1,4 +1,5 @@
 const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
+const fs = require('fs')
 const path = require('path')
 const openApp = require('child_process').execFile
 
@@ -11,7 +12,7 @@ const createWindow = () => {
         resizable: false,
         minimizable: false,
         maximizable: false,
-        show: true,
+        show: false,
         opacity: 0,
         closable: false,
         alwaysOnTop: true,
@@ -27,22 +28,40 @@ const createWindow = () => {
     return win
 }
 
-console.log(app.getPath("appData"))
+const settingslocation = path.join(app.getPath("appData"), "desktopmanager", "settings.json")
+const defaultsettings = {
+    visuals: {
+        accentcolor: "#2979ff",
+        textcolor: "#ffffff",
+        buttoncolor: "#3b3b3b",
+        opacity: .5
+    }
+}
+if(!fs.existsSync(settingslocation)){
+    fs.writeFileSync(settingslocation, JSON.stringify(defaultsettings))
+}
+const settings = JSON.parse(fs.readFileSync(settingslocation, 'utf-8'))
+
 
 app.setLoginItemSettings({
     openAtLogin: true,
     openAsHidden: true,
-    //path: path.resolve(path.dirname(process.execPath), '..', 'Update.exe'),
     args: [
         '--processStart', `"${path.basename(process.execPath)}"`,
     ]
 })
+
+
 
 app.whenReady().then(() => {
     let open = false
     const win = createWindow()
     
     globalShortcut.register('CommandOrControl+Tab', () => toggleWindow())
+
+    ipcMain.on('probe-colors', (e, args) => {
+        win.webContents.send('change-colors', settings.visuals)
+    })
 
     function toggleWindow() {
         if(open){
