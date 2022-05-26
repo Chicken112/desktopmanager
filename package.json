@@ -1,12 +1,13 @@
 {
   "name": "desktopmanager",
   "version": "1.0.0",
-  "description": "My desktop manager",
+  "description": "A simple desktop overlay",
   "main": "index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "electron-builder"
   },
   "keywords": [],
   "author": "ChickenDev",
@@ -16,23 +17,56 @@
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-wix": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "^18.2.4"
+    "electron": "^18.2.4",
+    "electron-builder": "^23.0.3",
+    "electron-icon-builder": "^2.0.1",
+    "electron-wix-msi": "^4.0.0",
+    "exe-icon-extractor": "^1.0.8"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+  "build": {
+    "appId": "DesktopManager",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "res/icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "res/icon.ico",
+      "uninstallerIcon": "res/icon.ico",
+      "uninstallDisplayName": "DesktopManager",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "res\\icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
+            "setupIcon": "res\\icon.ico",
             "name": "desktopmanager",
             "authors": "Chickendev",
             "iconUrl": "https://github.com/Chicken112/desktopmanager/blob/main/res/icon.ico?raw=true",
+            "loadingGif": "res\\installing.gif",
             "msi": true
+          }
+        },
+        {
+          "name": "@electron-forge/maker-wix",
+          "config": {
+            "language": 1033,
+            "name": "DesktopManager",
+            "description": "A simple desktop overlay",
+            "manufacturer": "ChickenDev",
+            "ui": true,
+            "version": "1.0.0"
           }
         },
         {

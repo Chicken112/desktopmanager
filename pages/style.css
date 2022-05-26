@@ -1,5 +1,8 @@
 :root{
     --color-accent: #2979ff;
+    
+    --buttonSize: 4rem;
+    --iconSize: 2.5rem;
 }
 @font-face {
     font-family: SourceCodePro;
@@ -12,6 +15,8 @@
     color: white;
     border: none;
     font-family: 'SourceCodePro';
+    list-style: none;
+    text-decoration: none;
 }
 body{
     background-color: rgba(0, 0, 0, .5);
@@ -23,30 +28,65 @@ body{
 }
 .right{
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 1rem;
+    top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    padding: 1rem;
 }
-.right button{
+.container:first-child > li:first-child > ul{
+    top: 50%;
+}
+.container{
+    /* display: flex; */
+    flex-direction: column;
+    gap: .5rem;
+    
+    position: absolute;
+    top: -50%;
+    right: 110%;
+
+    display: none;
+}
+/*.container.active > li > .container,*/ .container.active{
+    display: flex;
+}
+.container li{
     background-color: rgb(59, 59, 59);
     border-radius: 1rem;
-    padding: 0.5rem;
-    width: 3rem;
-    height: 3rem;
+    width: var(--buttonSize);
+    height: var(--buttonSize);
     position: relative;
 }
-.right button:hover{
+.container.active > li{
+    display: block;
+    animation: pulse 0.2s linear 1;
+}
+@keyframes pulse{
+    25%  {transform: scale(0.9);}
+    75%  {transform: scale(1.1);}
+}
+.container li > button{
+    width: var(--buttonSize);
+    height: var(--buttonSize);
+    padding: calc((var(--buttonSize) - var(--iconSize))/2);
+}
+.container li:hover{
     background-color: var(--color-accent);
 }
-.right button i{
+[class^="devicon"] {
+    font-size: var(--iconSize);
+}
+[class^="material-symbols"] {
+    font-size: var(--iconSize);
+}
+/* .container li i{
     position: absolute;
     font-size: 2rem;
     inset: 0;
     transform: translateY(20%);
-}
+} */
+
+/* Tooltip */
 .tooltip::before{
     content: attr(data-tooltip);
     position: absolute;
