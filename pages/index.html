@@ -65,6 +65,7 @@
     </div>
     <div class="bottom">
       <button onclick="openSettings()"><span class="material-symbols-outlined">settings</span></button>
+      <button onclick="openStats()"><span class="material-symbols-outlined">leaderboard</span></button>
     </div>
 
     <div class="window" id="settings">
@@ -73,6 +74,19 @@
       <p>Here, you can customize the appearence of stuff</p>
       <button onclick="sendMessageToWindow('show-resource-directory')"><span class="material-symbols-outlined">folder</span>Open Configuration folder</button>
       <button onclick="sendMessageToWindow('exit')"><span class="material-symbols-outlined">cancel</span>Exit</button>
+    </div>
+    <div class="window" id="stats">
+      <div class="handle"></div>
+      <div class="wrapper">
+        <div>
+          <h1 id="data-cpupercent">34%</h1>
+          <p id="data-cputext">Cpu (4)</p>
+        </div>
+        <div>
+          <h1 id="data-memorypercent">50%</h1>
+          <p id="data-memorytext">Memory 20/50</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>

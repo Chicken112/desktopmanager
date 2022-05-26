@@ -1,4 +1,5 @@
 const { app, BrowserWindow, globalShortcut, ipcMain, shell } = require('electron')
+const utils = require('os-utils')
 const fs = require('fs')
 const path = require('path')
 const openApp = require('child_process').execFile
@@ -69,6 +70,26 @@ app.whenReady().then(() => {
     })
     ipcMain.on("exit", (e, args) => {
         app.exit(0)
+    })
+
+    const cores = utils.cpuCount()
+    ipcMain.once("start-stat-probing", () => {
+        const probe = setInterval(() => {
+            if(!win.isVisible()){
+                return
+            }
+            utils.cpuUsage((cpupercent) => {
+                win.webContents.send("os-stat", {
+                    cpu: cpupercent,
+                    cores: cores,
+                    memory: utils.freemem(),
+                    maxmemory: utils.totalmem()
+                })
+            })
+        }, 1000);
+        ipcMain.once("stop-stat-probing", () => {
+            clearInterval(probe)
+        })
     })
 
     function toggleWindow() {
