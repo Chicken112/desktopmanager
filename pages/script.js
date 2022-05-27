@@ -29,7 +29,7 @@ ipcRenderer.on('settings', (e, data) => {
   navbar.innerHTML = '<ul class="container active">' + current + "</ul>"
   function fillNavbarREC(stuff) {
     let icon = ""
-    switch (stuff.textType) {
+    switch (stuff.textType.toLowerCase()) {
       case "material":
         icon = `<i class="material-symbols-outlined">${stuff.text}</i>`
         break;
