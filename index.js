@@ -44,6 +44,7 @@ const defaultsettings = {
         {
             "text": "O",
             "hover": "Options",
+            "textType": "text",
             "submenu": [
             {
                 "text": "firefox-plain",

@@ -22,6 +22,7 @@ ipcRenderer.on('settings', (e, data) => {
   rootElement.style.setProperty('--opacity', data.visuals.opacity)
 
   const navbar = document.querySelector('.right')
+  navbar.innerHTML = ""
   let current = ""
   data.navbar.forEach(el => {
     fillNavbarREC(el)
@@ -29,7 +30,7 @@ ipcRenderer.on('settings', (e, data) => {
   navbar.innerHTML = '<ul class="container active">' + current + "</ul>"
   function fillNavbarREC(stuff) {
     let icon = ""
-    switch (stuff.textType.toLowerCase()) {
+    switch (stuff.textType.toLowerCase() || "text") {
       case "material":
         icon = `<i class="material-symbols-outlined">${stuff.text}</i>`
         break;
