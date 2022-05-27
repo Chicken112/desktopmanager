@@ -4,7 +4,7 @@
 
 # Config
 ### Visuals
-```json
+```js
 "accentcolor": COLOR
 "textcolor": COLOR
 "lightaccentcolor": COLOR
@@ -17,7 +17,7 @@ hotkey: string representing *[electron global hotkeys](https://www.electronjs.or
 ### navbar
 navbar is a list of objects such:\
 `? means optional`
-```json
+```js
 "text": string that gets displayed STRING
 "textType": TEXT | MATERIAL | DEVICON
     1. "material": fetches the icon from google's material icons "fonts.google.com/icons"
