@@ -1,4 +1,4 @@
-//const { ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron');
 
 const time = document.querySelector("#time")
 const date = document.querySelector("#date")
@@ -9,34 +9,66 @@ setInterval(() => {
   time.textContent = `${current.getHours()}:${current.getMinutes()}.${current.getSeconds()}`
 }, 1000);
 function openApp(path) {
-  //ipcRenderer.send('open-app', path)
+  ipcRenderer.send('open-app', path)
 }
 
 const rootElement = document.querySelector(':root')
-/*ipcRenderer.on('change-colors', (e, data) => {
-  rootElement.style.setProperty('--color-accent', data.accentcolor)
-  rootElement.style.setProperty('--color-text', data.textcolor)
-  rootElement.style.setProperty('--color-button', data.buttoncolor)
-  rootElement.style.setProperty('--opacity', data.opacity)
-})
-ipcRenderer.send('probe-colors')*/
+ipcRenderer.on('settings', (e, data) => {
+  window.settings = data
+  rootElement.style.setProperty('--color-accent', data.visuals.accentcolor)
+  rootElement.style.setProperty('--color-accent-light', data.visuals.lightaccentcolor)
+  rootElement.style.setProperty('--color-accent-dark', data.visuals.darkaccentcolor)
+  rootElement.style.setProperty('--color-text', data.visuals.textcolor)
+  rootElement.style.setProperty('--opacity', data.visuals.opacity)
 
-const dropdownElements = document.querySelectorAll('.right .container')
-function openDropdownTab(params) {
-  const hasActive = params.nextElementSibling.classList.contains('active')
-//  console.log(params.parentElement.parentElement)
-  dropdownElements.forEach(child => {
-        child.classList.remove('active')
-    });
-
-    console.log(hasActive)
-    params.nextElementSibling.classList.toggle('active', !hasActive)
-    setActiveREC(params.nextElementSibling)
-    function setActiveREC(element) {
-        const el = element.parentElement.parentElement
-        if(el.classList.contains('container')){
-            el.classList.add('active')
-            setActiveREC(el)
-        }
+  const navbar = document.querySelector('.right')
+  let current = ""
+  data.navbar.forEach(el => {
+    fillNavbarREC(el)
+  })
+  navbar.innerHTML = '<ul class="container active">' + current + "</ul>"
+  function fillNavbarREC(stuff) {
+    let icon = ""
+    switch (stuff.textType) {
+      case "material":
+        icon = `<i class="material-symbols-outlined">${stuff.text}</i>`
+        break;
+      case "devicon":
+        icon = `<i class="devicon-${stuff.text}"></i>`
+        break;
+      default:
+        icon = stuff.text
+        break;
     }
+    current += `<li><button class="${stuff.hover ? 'tooltip" data-tooltip="' + stuff.hover : ""}" onclick="${stuff.submenu ? "openDropdownTab(this)" : "openApp('" + stuff.exelocation + "')"}">${icon}</button>`
+    if(stuff.submenu){
+      current += `<ul class="container">`
+      stuff.submenu.forEach(elm => {
+        fillNavbarREC(elm)
+      })
+      current += `</ul>`
+    }
+    current += `</li>`
+  }
+})
+ipcRenderer.send('request-settings')
+
+let dropdownElements = null
+function openDropdownTab(params) {
+  if(dropdownElements == null){
+    dropdownElements = document.querySelectorAll('.right .container')
+  }
+  const hasActive = params.nextElementSibling.classList.contains('active')
+  dropdownElements.forEach(child => {
+    child.classList.remove('active')
+  });
+  params.nextElementSibling.classList.toggle('active', !hasActive)
+  setActiveREC(params.nextElementSibling)
+  function setActiveREC(element) {
+      const el = element.parentElement.parentElement
+      if(el.classList.contains('container')){
+          el.classList.add('active')
+          setActiveREC(el)
+      }
+  }
 }

@@ -1,6 +1,7 @@
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 const windows = document.querySelectorAll('.window')
 const settingspage = document.querySelector('.window#settings')
+const keybindText = document.querySelector('#keybind')
 settingspage.classList.add("open")
 settingspage.style.width = `${clamp(window.innerWidth/2, 0, 500)}px`
 settingspage.style.height = `${clamp(window.innerHeight/2, 0, 500)}px`
@@ -8,6 +9,7 @@ settingspage.style.left = `${window.innerWidth/2 - settingspage.clientWidth/2}px
 settingspage.style.top = `${window.innerHeight/2 - settingspage.clientHeight/2}px`
 settingspage.classList.remove("open")
 function openSettings(val) {
+    keybindText.textContent = window.settings.hotkey
     if(val == undefined){
         settingspage.classList.toggle('open')
     }else{

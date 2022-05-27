@@ -32,12 +32,41 @@ const createWindow = () => {
 const settingslocation = path.join(app.getPath("appData"), "desktopmanager", "settings.json")
 const defaultsettings = {
     visuals: {
-        accentcolor: "#2979ff",
-        textcolor: "#ffffff",
-        buttoncolor: "#3b3b3b",
+        accentcolor: "#974063",
+        textcolor: "#ff9677",
+        lightaccentcolor: "#f54768",
+        darkaccentcolor: "#41436a",
         opacity: .5
     },
-    hotkey: "CommandOrControl+Tab"
+    hotkey: "CommandOrControl+Tab",
+    navbar: [
+        {
+            text: "1",
+            hover: "Hello",
+            textType: "text|material|devicon",
+            exelocation: "",
+            submenu: [
+                {
+                    text: "1.1",
+                    hover: 'sub hover',
+                    type: "text|material|devicon",
+                },
+                {
+                    text: "1.2",
+                    type: "text|material|devicon",
+                },
+            ]
+        },
+        {
+            text: "2",
+            type: "text|material|devicon",
+        },
+        {
+            text: "3",
+            hover: 'lol',
+            type: "text|material|devicon",
+        },
+    ]
 }
 if(!fs.existsSync(settingslocation)){
     fs.writeFileSync(settingslocation, JSON.stringify(defaultsettings))
@@ -61,8 +90,8 @@ app.whenReady().then(() => {
     
     globalShortcut.register(settings.hotkey, () => toggleWindow())
 
-    ipcMain.on('probe-colors', (e, args) => {
-        win.webContents.send('change-colors', settings.visuals)
+    ipcMain.on('request-settings', (e, args) => {
+        win.webContents.send('settings', settings)
     })
 
     ipcMain.on("show-resource-directory", (e, args) => {
@@ -74,6 +103,7 @@ app.whenReady().then(() => {
     })
 
     const cores = utils.cpuCount()
+    const totalmem = utils.totalmem()
     ipcMain.once("start-stat-probing", () => {
         const probe = setInterval(() => {
             if(!win.isVisible()){
@@ -84,7 +114,7 @@ app.whenReady().then(() => {
                     cpu: cpupercent,
                     cores: cores,
                     memory: utils.freemem(),
-                    maxmemory: utils.totalmem()
+                    maxmemory: totalmem
                 })
             })
         }, 1000);

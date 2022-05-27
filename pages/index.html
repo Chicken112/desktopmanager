@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <!-- <script defer src="window.js"></script> -->
+    <script defer src="window.js"></script>
     <link rel="icon" href="../res/icon.ico" type="image/x-icon">
   </head>
   <body>
@@ -55,21 +55,6 @@
           </ul>
         </li>
       </ul>
-
-      <!-- <div class="container">
-        <button onclick="openApp('C:\\Users\\Péter\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe')" class="tooltip" data-tooltip="VS Code"><i class="devicon-vscode-plain"></i></button>
-        <div class="container">
-          <button onclick="openApp('D:\\Downloads\\Android Studio\\bin\\studio64.exe')" class="tooltip" data-tooltip="Android Studio"><i class="devicon-android-plain"></i></button>
-          <button onclick="openApp('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE')" class="tooltip" data-tooltip="VS Community 2019"><i class="devicon-visualstudio-plain"></i></button>
-        </div>
-      </div>
-      <div class="container">
-        <button onclick="openApp('C:\\Users\\Péter\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe')" class="tooltip" data-tooltip="VS Code"><i class="devicon-vscode-plain"></i></button>
-        <button onclick="openApp('D:\\Downloads\\Android Studio\\bin\\studio64.exe')" class="tooltip" data-tooltip="Android Studio"><i class="devicon-android-plain"></i></button>
-        <button onclick="openApp('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE')" class="tooltip" data-tooltip="VS Community 2019"><i class="devicon-visualstudio-plain"></i></button>
-        <button onclick="openApp('C:\\Program Files\\Unity Hub\\Unity Hub.exe')" class="tooltip" data-tooltip="Unity"><i class="devicon-unity-original"></i></button>
-        <button onclick="openApp('C:\\Program Files\\Mozilla Firefox\\firefox.exe')" class="tooltip" data-tooltip="Firefox"><i class="devicon-firefox-plain"></i></button>
-      </div> -->
     </div>
     <div class="bottom">
       <button onclick="openSettings()"><span class="material-symbols-outlined">settings</span></button>
@@ -80,6 +65,7 @@
       <div class="handle"></div>
       <h1>Settigs</h1>
       <p>Here, you can customize the appearence of stuff</p>
+      <p class="highlight" id="keybind">Keybind</p>
       <button onclick="sendMessageToWindow('show-resource-directory')"><span class="material-symbols-outlined">folder</span>Open Configuration folder</button>
       <button onclick="sendMessageToWindow('exit')"><span class="material-symbols-outlined">cancel</span>Exit</button>
     </div>
