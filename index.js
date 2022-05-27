@@ -2,6 +2,7 @@ const { app, BrowserWindow, globalShortcut, ipcMain, shell } = require('electron
 const utils = require('os-utils')
 const fs = require('fs')
 const path = require('path')
+const package = require('./package.json')
 const openApp = require('child_process').execFile
 
 const createWindow = () => {
@@ -41,31 +42,23 @@ const defaultsettings = {
     hotkey: "CommandOrControl+Tab",
     navbar: [
         {
-            text: "1",
-            hover: "Hello",
-            textType: "text|material|devicon",
-            exelocation: "",
-            submenu: [
-                {
-                    text: "1.1",
-                    hover: 'sub hover',
-                    type: "text|material|devicon",
-                },
-                {
-                    text: "1.2",
-                    type: "text|material|devicon",
-                },
+            "text": "O",
+            "hover": "Options",
+            "submenu": [
+            {
+                "text": "firefox-plain",
+                "exelocation": "Path to firefox.exe",
+                "hover": "Firefox",
+                "textType": "devicon"
+            },
+            {
+                "text": "chrome-plain",
+                "textType": "devicon",
+                "exelocation": "Path to chrome.exe",
+                "hover": "Chrome"
+            }
             ]
-        },
-        {
-            text: "2",
-            type: "text|material|devicon",
-        },
-        {
-            text: "3",
-            hover: 'lol',
-            type: "text|material|devicon",
-        },
+        }
     ]
 }
 if(!fs.existsSync(settingslocation)){
@@ -91,6 +84,7 @@ app.whenReady().then(() => {
     globalShortcut.register(settings.hotkey, () => toggleWindow())
 
     ipcMain.on('request-settings', (e, args) => {
+        settings.version = package.version
         win.webContents.send('settings', settings)
     })
 

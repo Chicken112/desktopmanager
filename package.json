@@ -1,24 +1,19 @@
 {
   "name": "desktopmanager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple desktop overlay",
   "main": "index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
+    "start": "electron .",
     "build": "electron-builder"
   },
   "keywords": [],
   "author": "ChickenDev",
   "license": "ISC",
+  "dependencies": {
+    "os-utils": "^0.0.14"
+  },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.63",
-    "@electron-forge/maker-deb": "^6.0.0-beta.63",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
-    "@electron-forge/maker-wix": "^6.0.0-beta.63",
-    "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "electron": "^18.2.4",
     "electron-builder": "^23.0.3"
   },
@@ -38,53 +33,5 @@
       "runAfterFinish": true,
       "allowToChangeInstallationDirectory": true
     }
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "icon": "res\\icon.ico"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "setupIcon": "res\\icon.ico",
-            "name": "desktopmanager",
-            "authors": "Chickendev",
-            "iconUrl": "https://github.com/Chicken112/desktopmanager/blob/main/res/icon.ico?raw=true",
-            "loadingGif": "res\\installing.gif",
-            "msi": true
-          }
-        },
-        {
-          "name": "@electron-forge/maker-wix",
-          "config": {
-            "language": 1033,
-            "name": "DesktopManager",
-            "description": "A simple desktop overlay",
-            "manufacturer": "ChickenDev",
-            "ui": true,
-            "version": "1.0.0"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
-  "dependencies": {
-    "os-utils": "^0.0.14"
   }
 }
