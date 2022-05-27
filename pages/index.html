@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <script defer src="window.js"></script>
+    <!-- <script defer src="window.js"></script> -->
     <link rel="icon" href="../res/icon.ico" type="image/x-icon">
   </head>
   <body>
@@ -44,6 +44,14 @@
           <ul class="container">
             <li><button class="tooltip" onclick="openApp('C:\\Users\\Péter\\AppData\\Roaming\\Spotify\\Spotify.exe')" data-tooltip="Spotify">Spotify</i></button></li>
             <li><button class="tooltip" onclick="openApp('C:\\Program Files (x86)\\Steam\\steam.exe')" data-tooltip="Steam">Steam</button></li>
+            <li>
+              <button onclick="openDropdownTab(this)">other</button>
+              <ul class="container">
+                <li><button>s1</button></li>
+                <li><button>s2</button></li>
+                <li><button>s3</button></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>

@@ -36,7 +36,8 @@ const defaultsettings = {
         textcolor: "#ffffff",
         buttoncolor: "#3b3b3b",
         opacity: .5
-    }
+    },
+    hotkey: "CommandOrControl+Tab"
 }
 if(!fs.existsSync(settingslocation)){
     fs.writeFileSync(settingslocation, JSON.stringify(defaultsettings))
@@ -58,7 +59,7 @@ app.whenReady().then(() => {
     let open = false
     const win = createWindow()
     
-    globalShortcut.register('CommandOrControl+Tab', () => toggleWindow())
+    globalShortcut.register(settings.hotkey, () => toggleWindow())
 
     ipcMain.on('probe-colors', (e, args) => {
         win.webContents.send('change-colors', settings.visuals)
