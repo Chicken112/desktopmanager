@@ -65,16 +65,17 @@ windows.forEach(win => {
         currentlydragging = win
         currentlydraggingOffset = [e.clientX - win.offsetLeft, e.clientY - win.offsetTop]
     }
-    handle.onmouseup = (e) => {
-        e.preventDefault()
-        currentlydragging = null
-    }
 });
+window.onmouseup = (e) => {
+    e.preventDefault()
+    currentlydragging = null
+}
 window.onmousemove = (e) => {
     if(currentlydragging == null){return;}
 
-    currentlydragging.style.left = `${e.clientX - currentlydraggingOffset[0]}px`
-    currentlydragging.style.top = `${e.clientY - currentlydraggingOffset[1]}px`
+
+    currentlydragging.style.left = `${clamp(e.clientX - currentlydraggingOffset[0], 0, window.innerWidth - currentlydragging.clientWidth)}px`
+    currentlydragging.style.top = `${clamp(e.clientY - currentlydraggingOffset[1], 0, window.innerHeight - currentlydragging.clientHeight)}px`
 }
 
 function sendMessageToWindow(msg, ...args) {
