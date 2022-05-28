@@ -80,3 +80,45 @@ window.onmousemove = (e) => {
 function sendMessageToWindow(msg, ...args) {
     ipcRenderer.send(msg, ...args)
 }
+
+const paletteselector = document.querySelector('#palettes')
+const palettes = [
+    {
+        name: "SeaTurtle",
+        accentcolor: "#1fc4da",
+        textcolor: "#e9ebed",
+        lightaccentcolor: "#82efea",
+        darkaccentcolor: "#006092",
+    },
+    {
+        name: "Embers",
+        accentcolor: "#974063",
+        textcolor: "#ffffff",
+        lightaccentcolor: "#f54768",
+        darkaccentcolor: "#41436a",
+    },
+    {
+        name: "Grove",
+        accentcolor: "#69ab3d",
+        textcolor: "#e9ebed",
+        lightaccentcolor: "#aed36c",
+        darkaccentcolor: "#295d09",
+    },
+    {
+        name: "Docks",
+        accentcolor: "#ef4b4c",
+        textcolor: "#e9e9eb",
+        lightaccentcolor: "#3e619b",
+        darkaccentcolor: "#42506b",
+    },
+    {
+        name: "Dragon",
+        accentcolor: "#46a8a7",
+        textcolor: "#eaebed",
+        lightaccentcolor: "#ffd782",
+        darkaccentcolor: "#334f64",
+    },
+]
+for (let i = 0; i < palettes.length; i++) {
+    paletteselector.innerHTML += `<div onclick="setPalette(palettes[${i}])" style="background-color: ${palettes[i].accentcolor}">${palettes[i].name}</div>`
+}

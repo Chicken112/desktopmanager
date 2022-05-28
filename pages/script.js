@@ -13,12 +13,19 @@ function openApp(path) {
 }
 
 const rootElement = document.querySelector(':root')
+function setPalette(palette, sendUpdate=true) {
+  if(sendUpdate){
+    window.settings.visuals.palette = palette
+    ipcRenderer.send('update-theme', palette)
+  }
+  rootElement.style.setProperty('--color-accent', palette.accentcolor)
+  rootElement.style.setProperty('--color-accent-light', palette.lightaccentcolor)
+  rootElement.style.setProperty('--color-accent-dark', palette.darkaccentcolor)
+  rootElement.style.setProperty('--color-text', palette.textcolor)
+}
 ipcRenderer.on('settings', (e, data) => {
   window.settings = data
-  rootElement.style.setProperty('--color-accent', data.visuals.accentcolor)
-  rootElement.style.setProperty('--color-accent-light', data.visuals.lightaccentcolor)
-  rootElement.style.setProperty('--color-accent-dark', data.visuals.darkaccentcolor)
-  rootElement.style.setProperty('--color-text', data.visuals.textcolor)
+  setPalette(data.visuals.palette, false)
   rootElement.style.setProperty('--opacity', data.visuals.opacity)
 
   const navbar = document.querySelector('.right')

@@ -33,10 +33,12 @@ const createWindow = () => {
 const settingslocation = path.join(app.getPath("appData"), "desktopmanager", "settings.json")
 const defaultsettings = {
     visuals: {
-        accentcolor: "#974063",
-        textcolor: "#ff9677",
-        lightaccentcolor: "#f54768",
-        darkaccentcolor: "#41436a",
+        plette: {
+            accentcolor: "#974063",
+            textcolor: "#ff9677",
+            lightaccentcolor: "#f54768",
+            darkaccentcolor: "#41436a",
+        },
         opacity: .5
     },
     hotkey: "CommandOrControl+Tab",
@@ -84,6 +86,12 @@ app.whenReady().then(() => {
     
     globalShortcut.register(settings.hotkey, () => toggleWindow())
 
+    win.webContents.on("before-input-event", (event,input)=> { 
+        if(input.code=='F4' && input.alt) 
+            event.preventDefault();
+        }
+    );
+
     ipcMain.on('request-settings', (e, args) => {
         settings.version = package.version
         win.webContents.send('settings', settings)
@@ -95,6 +103,11 @@ app.whenReady().then(() => {
     })
     ipcMain.on("exit", (e, args) => {
         app.exit(0)
+    })
+
+    ipcMain.on('update-theme', (e, data) => {
+        settings.visuals.palette = data
+        fs.writeFileSync(settingslocation, JSON.stringify(settings))
     })
 
     const cores = utils.cpuCount()
@@ -156,6 +169,7 @@ app.whenReady().then(() => {
     
     ipcMain.on('open-app', (event, path) => {
         toggleWindow()
+        console.log(path)
         openApp(path)
     })
 })
