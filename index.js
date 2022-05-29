@@ -30,22 +30,21 @@ const createWindow = () => {
     return win
 }
 
-const settingslocation = path.join(app.getPath("appData"), "desktopmanager", "settings.json")
 const defaultsettings = {
     visuals: {
-        plette: {
-            accentcolor: "#974063",
-            textcolor: "#ff9677",
-            lightaccentcolor: "#f54768",
-            darkaccentcolor: "#41436a",
+        palette: {
+            accentcolor: "#ef4b4c",
+            textcolor: "#e9e9eb",
+            lightaccentcolor: "#3e619b",
+            darkaccentcolor: "#42506b",
         },
         opacity: .5
     },
     hotkey: "CommandOrControl+Tab",
     navbar: [
         {
-            "text": "O",
-            "hover": "Options",
+            "text": "B",
+            "hover": "Browsers",
             "textType": "text",
             "submenu": [
             {
@@ -64,18 +63,15 @@ const defaultsettings = {
         }
     ]
 }
+const settingslocation = path.join(path.dirname(app.getPath("exe")), "settings.json")
 if(!fs.existsSync(settingslocation)){
     fs.writeFileSync(settingslocation, JSON.stringify(defaultsettings))
 }
 const settings = JSON.parse(fs.readFileSync(settingslocation, 'utf-8'))
 
-
 app.setLoginItemSettings({
     openAtLogin: true,
-    openAsHidden: true,
-    args: [
-        '--processStart', `"${path.basename(process.execPath)}"`,
-    ]
+    openAsHidden: true
 })
 
 

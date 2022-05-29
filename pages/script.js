@@ -24,6 +24,7 @@ function setPalette(palette, sendUpdate=true) {
   rootElement.style.setProperty('--color-text', palette.textcolor)
 }
 ipcRenderer.on('settings', (e, data) => {
+  console.log(data)
   window.settings = data
   setPalette(data.visuals.palette, false)
   rootElement.style.setProperty('--opacity', data.visuals.opacity)

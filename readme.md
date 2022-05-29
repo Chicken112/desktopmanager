@@ -29,10 +29,10 @@ navbar is a list of objects such:\
 ```
 
 # Example
-```
+```json
 {
-    "text": "O",
-    "hover": "Options",
+    "text": "B",
+    "hover": "Browsers",
     "submenu": [
     {
         "text": "firefox-plain",
@@ -49,3 +49,5 @@ navbar is a list of objects such:\
     ]
 }
 ```
+# Thanks
+thanks to [ui.ux.palette](https://www.instagram.com/ui.ux.palette/) for providing the base palettes
