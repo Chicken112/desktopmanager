@@ -123,7 +123,7 @@ const palettes = [
         textcolor: "#eaebed",
         lightaccentcolor: "#ffd782",
         darkaccentcolor: "#334f64",
-    },
+    }
 ]
 for (let i = 0; i < palettes.length; i++) {
     paletteselector.innerHTML += `<div onclick="setPalette(palettes[${i}])" style="background-color: ${palettes[i].accentcolor}">${palettes[i].name}</div>`
