@@ -1,6 +1,7 @@
 # Desktop Manager
 
 # Gallery
+![Screenshot](https://github.com/Chicken112/desktopmanager/blob/main/desktopmanager.png)
 
 # Config
 ### Visuals
